@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>上传页面</title>
+    <script src="../js/angular.js"></script>
+    <script src="../js/jquery.min.js"></script>
+
+</head>
+
+<body ng-app="listApp" ng-controller="listCtrl">
+<form action="/upload" method="post" enctype="multipart/form-data" id="myForm">
+    <input type="hidden" name="sid" ng-value="sid">
+    请选择头像：<input type="file" name="file" class="file" id="file"/>
+    <input type="submit" value="上传"/>
+</form>
+</body>
+<script>
+    var app = angular.module("listApp",[]);
+    app.config(['$locationProvider',function ($locationProvider) {
+        $locationProvider.html5Mode({
+            enabled:true,
+            requireBase:false
+        })
+    }])
+    app.controller("listCtrl",function ($scope,$http,$location){
+        var sid = $location.search().sid;
+        $scope.sid=sid;
+
+    })
+
+</script>
+</html>

@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+</head>
+<body>
+<form>
+    <tr>
+        <td>
+            商品id:${shop.sid}
+        </td>
+        <td>
+            商品图片:${shop.img}
+        </td>
+        <br>
+        <td>
+            商品品牌:${shop.brand}
+        </td>
+        <br>
+        <td>
+            商品类型:${shop.type}
+        </td>
+        <br>
+        <td>
+            商品名称:${shop.sname}
+        </td>
+        <td>
+            商品简介:${shop.content}
+        </td>
+        <td>
+            商品单价:${shop.price}
+        </td>
+        <td>
+            商品库存:${shop.num}
+        </td>
+        <td><a href="../电商下/yk-parent/web/src/main/resources/static/html/updteadd.html">下单</a></td>
+    </tr>
+</form>
+</body>
+</html>

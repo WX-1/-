@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>Insert title here</title>
+    <script src="../js/angular.js"></script>
+    <script src="../js/jquery.min.js"></script>
+
+    <script>
+        var app = angular.module("listApp",[]);
+        app.config(['$locationProvider',function ($locationProvider) {
+            $locationProvider.html5Mode({
+                enabled:true,
+                requireBase:false
+            })
+        }])
+        app.controller("listCtrl",function ($scope,$http,$location) {
+            $scope.sid=$location.search().sid;
+            $http.get("/findOne?sid="+$scope.sid).then(
+                function (response) {
+                    $scope.area=response.data;
+                }
+            )
+            $scope.AddOrder =function () {
+                $http.post("/oadd",$scope.ass).then(
+                    function (response) {
+                        if (response.data.success){
+                            alert(response.data.success);
+                            window.location.href="list.html";
+                        }else{
+                            alert(response.data.success);
+                        }
+                    }
+                )
+
+
+            }
+
+        })
+        
+        
+
+    </script>
+
+
+</head>
+<body ng-app="listApp" ng-controller="listCtrl">
+<table>
+    <tr>
+        <td>
+
+            <input type="hidden" ng-model="area.sid">
+            名称:<input type="text" ng-model="area.sname" disabled="disabled"><br>
+            库存:<input type="text" ng-model="area.num" disabled="disabled"><br>
+            单价:<input type="text" ng-model="area.price" disabled="disabled"><br>
+            购买数量:<input type="text" ng-model="ass.count"><br>
+            购买金额:<input type="text" ng-model="ass.sum"><br>
+            收件人名称:<input type="text" ng-model="ass.oname"><br>
+            收件人手机号:<input type="text" ng-model="ass.tel"><br>
+            地址:<input type="text" ng-model="ass.address"><br>
+            <input type="button" value="修改" ng-click="AddOrder()">
+        </td>
+    </tr>
+</table>
+</body>
+</html>
+
